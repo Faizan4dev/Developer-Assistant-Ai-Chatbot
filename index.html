@@ -53,12 +53,13 @@
       <div class="mainFooter">
         <div class="input">
           <select name="mode" id="inputMode" aria-label="select mode">
-            <option value="explain"><i class="fa-solid fa-question-circle"></i> Explain Code</option>
-            <option value="debug"><i class="fa-solid fa-bug"></i> Debug Code</option>
-            <option value="teach"><i class="fa-solid fa-graduation-cap"></i> Teach Me</option>
+            <option value="general">General mode</option>
+            <option value="explain">💡 Explain Code</option>  <!--used emojis bcoz font icons are not working inside option tag-->
+            <option value="debug">🐛 Debug Code</option>
+            <option value="teach">🎓 Teach Me</option>
           </select>
           <input type="text" id="input" placeholder="ask me anything about code...">
-          <button type="submit"><i class="fa-solid fa-paper-plane"></i></button>
+          <button type="submit" id="submit"><i class="fa-solid fa-paper-plane"></i></button>
         </div>
       </div>
     </div>
