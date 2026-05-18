@@ -19,6 +19,9 @@
     
     <div class="sidebar">
         <div id="sideHead">
+          <div class="smallScreen">
+           <i class="fa-solid fa-bars"></i>
+         </div>
           <img src="assets/icon.png" alt="icon" id="img1">
           <h2 id="sidetitle"> DevAssist</h2>
           <img src="assets/plusIcon-removebg-preview.png" alt="newchat" id="img2">
@@ -30,7 +33,7 @@
           </div>
         </div>
         <div class="foot">
-          <p><span class="material-symbols-outlined">sunny</span>Toggle Theme</p>
+          <p id="toggle"><span class="material-symbols-outlined">sunny</span>Toggle Theme</p>
           <p ><i id="setng" class="fa-solid fa-gear"></i>Settings</p>
         </div>     
     </div> 
@@ -38,10 +41,10 @@
 
     <div class="main">
       <div class="mainHead">
-         <div class="smallScreen">
-          <i class="fa-solid fa-bars"></i>
-        </div>
-        <h3>New Chat</h3>
+         <div class="smallScreen" style="position: absolute; left: 1rem;">
+           <i class="fa-solid fa-bars"></i>
+         </div>
+         <h3>New Chat</h3>
       </div>
       <div class="mainCenter">
          <img src="assets/icon.png" alt="icon">
@@ -63,6 +66,9 @@
         </div>
       </div>
     </div>
+
   </div>
+
+  <script src="js/app.js"></script>
 </body>
 </html>
