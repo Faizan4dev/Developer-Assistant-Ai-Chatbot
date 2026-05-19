@@ -217,16 +217,39 @@
   border-radius: 50%;
   cursor: pointer;
 }
-#footerText{
+/* #footerText{
   color: #007bff;
   font-size: 0.9rem;
   display: flex;
   flex-direction: row;
   justify-content: center;
-  /* left: 50%; */
   margin-top: 1rem;
-  /* font-family: "Helvetica Neue", Helvetica, sans-serif; */
+} */
+
+#footerText {
+  color: #555;
+  font-size: 0.9rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  margin-top: 1rem;
+
+  /* pill styles */
+  background: white;
+  border: 0.5px solid #d1d5db;
+  border-radius: 999px;
+  padding: 4px 16px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+
+  /* center it in the footer */
+  display: flex;
+  margin-left: auto;
+  margin-right: auto;
+  width: fit-content;
 }
+
+
 
 img:hover{
   transform: scale(1.05);
@@ -246,6 +269,9 @@ img:hover{
 }
 
 .dark .main{
+  background-color: #1e1e1e;
+}
+.dark .main .mainFooter{
   background-color: #1e1e1e;
 }
 
@@ -332,26 +358,28 @@ img:hover{
   z-index: 9999;
 }
 
-/* Users Message  */
+/* ********************* */
+/******* Messaging *******/
+/* ********************* */
 .chat{
   display: none;
-
 }
+
 .chatVisible{
   display: flex;
   flex-direction: column;
-  align-items: flex-end;
-  overflow-y: scroll;
+
+  overflow-y: auto;
   overflow-x: hidden;
-  position: static;
-  /* height: ; */
-  padding-bottom:7rem;
+
+  flex: 1;
+  min-height: 0;
+
+  padding: 1rem;
+  padding-bottom: 7rem;
 }
+
 /* .chatVisible p{
-  display: flex;
-  flex-grow: 1;
-  flex-direction: column;
-  align-items: flex-start;
   background-color: #007bff;
   color: white;
   padding: 1rem;
@@ -359,20 +387,27 @@ img:hover{
   border-radius: 1.25rem;
   min-width: 10rem;
   max-width: 80%;
-  position: relative;
-  left: 10rem;
-} */
-.chatVisible p{
-  background-color: #007bff;
-  color: white;
-
-  padding: 1rem;
-  margin: 0.7rem;
-
-  border-radius: 1.25rem;
-
-  min-width: 10rem;
-  max-width: 80%;
-
   word-wrap: break-word;
+} */
+
+.userMsg{
+  align-self: flex-end;
+  background-color: #007bff;
+  color: white;
+  padding: 1rem;
+  margin: 0.7rem;
+  border-radius: 1.25rem;
+  min-width: 10rem;
+  max-width: 80%;
+}
+
+.botMsg{
+  align-self: flex-start;
+  background-color: #e5e7eb;
+  color: black;
+  padding: 1rem;
+  margin: 0.7rem;
+  border-radius: 1.25rem;
+  min-width: 10rem;
+  max-width: 80%;
 }

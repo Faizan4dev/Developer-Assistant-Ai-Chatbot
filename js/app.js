@@ -38,11 +38,17 @@ input.addEventListener("input", () => {
 
 submitBtn.addEventListener("click", function () {
   msgSend();
+  setTimeout(() => {
+    getResponse();
+  }, 1000);
 });
 input.addEventListener("keydown", function (event) {
   if (event.key === "Enter" && !event.shiftKey) {
     event.preventDefault();
     msgSend();
+    setTimeout(() => {
+      getResponse();
+    }, 1000);
   }
 });
 
@@ -52,21 +58,25 @@ let upperDiv = document.querySelector(".mainHead");
 let centerDiv = document.querySelector(".mainCenter");
 let chatBox = document.querySelector(".chat");
 function msgSend() {
-  let userMsg = input.value.trim();
-  if (userMsg === "") {
+  let urMsg = input.value.trim();
+  if (urMsg === "") {
     input.value = "";
   } else {
-    console.log(`u entered ${userMsg}`);
-    // upperDiv.innerHTML = "";
-    // upperDiv.style.display = "none";
-    // centerDiv.innerHTML = "";
+    // console.log(`u entered ${userMsg}`);
     upperDiv.remove();
     centerDiv.remove();
     chatBox.classList.replace("chat", "chatVisible");
     let msg = document.createElement("p");
-    msg.innerText = userMsg;
+    msg.classList.add("userMsg");
+    msg.innerText = urMsg;
     chatBox.appendChild(msg);
     input.value = "";
     input.style.height = "auto";
   }
+}
+function getResponse() {
+  let resp = document.createElement("p");
+  resp.classList.add("botMsg");
+  resp.innerText = "Thinking...";
+  chatBox.appendChild(resp);
 }
