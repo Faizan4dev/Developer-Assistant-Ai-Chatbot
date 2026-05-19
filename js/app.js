@@ -12,7 +12,7 @@ togl.addEventListener("click", function () {
   }
 });
 
-// Side bar Hamburg menu for mobile phones
+// Side bar Hamburg menu for mobile phones ----------
 let sidebar = document.querySelector(".sidebar");
 let hamburg = document.querySelectorAll(".smallScreen");
 let show = false;
@@ -46,11 +46,11 @@ input.addEventListener("keydown", function (event) {
   }
 });
 
-//two main divs of welcome screen
+//two main divs of welcome screen --------------------
 let main = document.querySelector(".main");
 let upperDiv = document.querySelector(".mainHead");
 let centerDiv = document.querySelector(".mainCenter");
-// let chat = document.querySelector(".chat");
+let chatBox = document.querySelector(".chat");
 function msgSend() {
   let userMsg = input.value.trim();
   if (userMsg === "") {
@@ -58,10 +58,15 @@ function msgSend() {
   } else {
     console.log(`u entered ${userMsg}`);
     // upperDiv.innerHTML = "";
-    upperDiv.style.display = "none";
-    centerDiv.style.display = "none";
-    // chat.style.display = "block";
-    // main.classList.add("chat");
+    // upperDiv.style.display = "none";
+    // centerDiv.innerHTML = "";
+    upperDiv.remove();
+    centerDiv.remove();
+    chatBox.classList.replace("chat", "chatVisible");
+    let msg = document.createElement("p");
+    msg.innerText = userMsg;
+    chatBox.appendChild(msg);
     input.value = "";
+    input.style.height = "auto";
   }
 }
