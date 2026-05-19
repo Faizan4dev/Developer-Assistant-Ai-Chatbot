@@ -38,17 +38,13 @@ input.addEventListener("input", () => {
 
 submitBtn.addEventListener("click", function () {
   msgSend();
-  setTimeout(() => {
-    getResponse();
-  }, 1000);
+  // getResponse(reply);
 });
 input.addEventListener("keydown", function (event) {
   if (event.key === "Enter" && !event.shiftKey) {
     event.preventDefault();
     msgSend();
-    setTimeout(() => {
-      getResponse();
-    }, 1000);
+    // getResponse(reply);
   }
 });
 
@@ -57,7 +53,7 @@ let main = document.querySelector(".main");
 let upperDiv = document.querySelector(".mainHead");
 let centerDiv = document.querySelector(".mainCenter");
 let chatBox = document.querySelector(".chat");
-function msgSend() {
+async function msgSend() {
   let urMsg = input.value.trim();
   if (urMsg === "") {
     input.value = "";
@@ -72,11 +68,20 @@ function msgSend() {
     chatBox.appendChild(msg);
     input.value = "";
     input.style.height = "auto";
+    //bot thinking
+    let resp = document.createElement("p");
+    resp.classList.add("botMsg");
+    resp.innerText = "Thinking...";
+    chatBox.appendChild(resp);
+    // return msg;
+    const reply = await getGeminiResponse(urMsg);
+    resp.innerText = reply;
   }
 }
-function getResponse() {
-  let resp = document.createElement("p");
-  resp.classList.add("botMsg");
-  resp.innerText = "Thinking...";
-  chatBox.appendChild(resp);
-}
+
+// function getResponse(reply) {
+//   resp.innerText = "";
+//   let response = document.createElement("p");
+//   response.innerText = reply;
+//   chatBox.appendChild(response);
+// }
