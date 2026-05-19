@@ -54,16 +54,17 @@
         <p>new coding concepts -- simply and clearly!</p>
       </div>
       <div class="mainFooter">
-        <div class="input">
+        <div class="outerInput">
           <select name="mode" id="inputMode" aria-label="select mode">
             <option value="general">General mode</option>
             <option value="explain">💡 Explain Code</option>  <!--used emojis bcoz font icons are not working inside option tag-->
             <option value="debug">🐛 Debug Code</option>
             <option value="teach">🎓 Teach Me</option>
           </select>
-          <input type="text" id="input" placeholder="ask me anything about code...">
+          <textarea id="input" placeholder="ask me anything about code..." rows="1"></textarea>
           <button type="submit" id="submit"><i class="fa-solid fa-paper-plane"></i></button>
         </div>
+        <p id="footerText">made by Faizan 4 dev</p>
       </div>
     </div>
 

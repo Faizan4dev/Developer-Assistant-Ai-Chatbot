@@ -1,4 +1,5 @@
 let body = document.querySelector(".container");
+// Toggle theme
 let togl = document.querySelector("#toggle");
 let current = false;
 togl.addEventListener("click", function () {
@@ -26,3 +27,11 @@ for (btn of hamburg) {
     }
   });
 }
+
+// Input messages
+const input = document.querySelector("#input");
+
+input.addEventListener("input", function () {
+  input.style.height = "auto";
+  input.style.height = input.scrollHeight + "px";
+});
