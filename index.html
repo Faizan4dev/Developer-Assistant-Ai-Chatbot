@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>DevAssist</title>
+  <!-- <link rel="icon" type="image" href="assets/icon.png"> -->
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <!-- Google Fonts -->
@@ -40,6 +41,10 @@
 
 
     <div class="main">
+      <!-- <div class="chat">
+        <p>Hello Gemini!</p>
+        <p>Tell about yoursel</p>
+      </div> -->
       <div class="mainHead">
          <div class="smallScreen" style="position: absolute; left: 1rem;">
            <i class="fa-solid fa-bars"></i>
@@ -55,13 +60,14 @@
       </div>
       <div class="mainFooter">
         <div class="outerInput">
+          <textarea id="input" placeholder="ask me anything about code..." rows="1"></textarea>
           <select name="mode" id="inputMode" aria-label="select mode">
             <option value="general">General mode</option>
             <option value="explain">💡 Explain Code</option>  <!--used emojis bcoz font icons are not working inside option tag-->
             <option value="debug">🐛 Debug Code</option>
             <option value="teach">🎓 Teach Me</option>
           </select>
-          <textarea id="input" placeholder="ask me anything about code..." rows="1"></textarea>
+          
           <button type="submit" id="submit"><i class="fa-solid fa-paper-plane"></i></button>
         </div>
         <p id="footerText">made by Faizan 4 dev</p>

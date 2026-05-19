@@ -28,10 +28,40 @@ for (btn of hamburg) {
   });
 }
 
-// Input messages
-const input = document.querySelector("#input");
-
-input.addEventListener("input", function () {
+// Fetching user messages ----------------------------
+let input = document.querySelector("#input");
+let submitBtn = document.querySelector("#submit");
+input.addEventListener("input", () => {
   input.style.height = "auto";
   input.style.height = input.scrollHeight + "px";
 });
+
+submitBtn.addEventListener("click", function () {
+  msgSend();
+});
+input.addEventListener("keydown", function (event) {
+  if (event.key === "Enter" && !event.shiftKey) {
+    event.preventDefault();
+    msgSend();
+  }
+});
+
+//two main divs of welcome screen
+let main = document.querySelector(".main");
+let upperDiv = document.querySelector(".mainHead");
+let centerDiv = document.querySelector(".mainCenter");
+// let chat = document.querySelector(".chat");
+function msgSend() {
+  let userMsg = input.value.trim();
+  if (userMsg === "") {
+    input.value = "";
+  } else {
+    console.log(`u entered ${userMsg}`);
+    // upperDiv.innerHTML = "";
+    upperDiv.style.display = "none";
+    centerDiv.style.display = "none";
+    // chat.style.display = "block";
+    // main.classList.add("chat");
+    input.value = "";
+  }
+}
