@@ -2,6 +2,7 @@ let body = document.querySelector(".container");
 let currentSession = [];
 let allSessions = [];
 let loadedOldChat = false;
+
 // Toggle theme
 let togl = document.querySelector("#toggle");
 let current = false;
