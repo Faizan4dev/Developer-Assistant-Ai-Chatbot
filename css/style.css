@@ -401,13 +401,58 @@ img:hover{
   max-width: 80%;
 }
 
-.botMsg{
+/* .botMsg{
   align-self: flex-start;
   background-color: #e5e7eb;
   color: black;
-  padding: 1rem;
+  padding: 2rem;
   margin: 0.7rem;
   border-radius: 1.25rem;
   min-width: 10rem;
   max-width: 80%;
+} */
+
+.botMsg {
+  align-self: flex-start;
+  background-color: #e5e7eb;
+  color: black;
+  padding: 2rem;
+  margin: 0.7rem;
+  border-radius: 1.25rem;
+  min-width: 10rem;
+  max-width: 80%;
+}
+
+/* add these below */
+.botMsg p 
+{ 
+  margin-bottom: 0.5rem; 
+}
+.botMsg ul, .botMsg ol 
+{ padding-left: 1.5rem;
+   margin-bottom: 0.5rem;
+}
+.botMsg strong { 
+  font-weight: 600; 
+}
+
+.botMsg code {
+  background: #d1d5db;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-family: monospace;
+  font-size: 0.85rem;
+}
+.botMsg pre {
+  background: #1e1e1e;
+  color: white;
+  padding: 1rem;
+  border-radius: 8px;
+  overflow-x: auto;
+  margin: 0.5rem 0;
+}
+.botMsg pre code {
+  background: none;
+  padding: 0;
+  color: white;
 }
