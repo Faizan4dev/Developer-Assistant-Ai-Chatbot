@@ -98,9 +98,12 @@
   margin: 1rem;
 }
 
-#setng{
-  margin:0.2rem 0.8rem 0 1rem;
+#toggle{
+  margin-top: 2rem;
 }
+/* #setng{
+  margin:0.2rem 0.8rem 0 1rem;
+} */
 
 .foot p:hover{
   background-color: rgb(232, 239, 236);
