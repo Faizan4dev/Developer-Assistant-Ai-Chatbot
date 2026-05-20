@@ -1,4 +1,6 @@
 let body = document.querySelector(".container");
+let currentSession = [];
+let allSessions = [];
 // Toggle theme
 let togl = document.querySelector("#toggle");
 let current = false;
@@ -32,6 +34,8 @@ for (btn of hamburg) {
 let input = document.querySelector("#input");
 let inputMode = document.querySelector("#inputMode");
 let submitBtn = document.querySelector("#submit");
+let recentChats = document.querySelector("#recentChats");
+
 input.addEventListener("input", () => {
   input.style.height = "auto";
   input.style.height = input.scrollHeight + "px";
@@ -124,7 +128,7 @@ Use markdown formatting and provide helpful responses.
 let main = document.querySelector(".main");
 let upperDiv = document.querySelector(".mainHead");
 let centerDiv = document.querySelector(".mainCenter");
-let chatBox = document.querySelector(".chat");
+
 async function msgSend() {
   let urMsg = input.value.trim();
   let selectedMode = inputMode.value;
@@ -159,8 +163,52 @@ async function msgSend() {
     chatBox.scrollTop = chatBox.scrollHeight;
     // return msg;
     const reply = await getGeminiResponse(finalPrompt);
+    currentSession.push({
+      user: urMsg,
+      bot: reply,
+    });
     resp.innerHTML = marked.parse(reply);
   }
+}
+
+// new chat
+let chatBox = document.querySelector(".chat");
+let newChatBtn = document.querySelector("#img2");
+newChatBtn.addEventListener("click", startNewChat);
+
+function startNewChat() {
+  // Prevent empty sessions
+  if (currentSession.length > 0) {
+    // Save current session
+    allSessions.push(currentSession);
+
+    // Create sidebar preview
+    let chatPreview = document.createElement("p");
+    chatPreview.style.backgroundColor = "#e5e7eb";
+    chatPreview.style.borderRadius = "1rem";
+    chatPreview.style.padding = "0.5rem";
+    chatPreview.style.margin = "0.3rem 0.3rem 0.3rem 0";
+
+    // First user message becomes title
+    chatPreview.innerText = currentSession[0].user.slice(0, 20) + "...";
+    if (recentChats.innerText.includes("no recent chats")) {
+      recentChats.innerHTML = "";
+    }
+    recentChats.appendChild(chatPreview);
+  }
+
+  // Reset current session
+  currentSession = [];
+
+  // Clear chat UI
+  chatBox.innerHTML = "";
+
+  // Hide chat
+  chatBox.classList.replace("chatVisible", "chat");
+
+  // Restore welcome screen
+  main.prepend(upperDiv);
+  main.insertBefore(centerDiv, document.querySelector(".mainFooter"));
 }
 
 // function getResponse(reply) {
