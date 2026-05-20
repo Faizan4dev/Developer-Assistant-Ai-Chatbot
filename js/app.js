@@ -1,6 +1,7 @@
 let body = document.querySelector(".container");
 let currentSession = [];
 let allSessions = [];
+let loadedOldChat = false;
 // Toggle theme
 let togl = document.querySelector("#toggle");
 let current = false;
@@ -178,42 +179,99 @@ newChatBtn.addEventListener("click", startNewChat);
 
 function startNewChat() {
   // Prevent empty sessions
-  if (currentSession.length > 0) {
+  if (currentSession.length > 0 && !loadedOldChat) {
     // Save current session
-    allSessions.push(currentSession);
+    allSessions.push(JSON.parse(JSON.stringify(currentSession)));
 
-    // Create sidebar preview
-    let chatPreview = document.createElement("p");
-    chatPreview.style.backgroundColor = "#e5e7eb";
-    chatPreview.style.borderRadius = "1rem";
-    chatPreview.style.padding = "0.5rem";
-    chatPreview.style.margin = "0.3rem 0.3rem 0.3rem 0";
-
-    // First user message becomes title
-    chatPreview.innerText = currentSession[0].user.slice(0, 20) + "...";
+    // Remove placeholder text
     if (recentChats.innerText.includes("no recent chats")) {
       recentChats.innerHTML = "";
     }
-    recentChats.appendChild(chatPreview);
+
+    // Create sidebar preview
+    let chatPreview = document.createElement("p");
+
+    // Preview text
+    chatPreview.innerText = currentSession[0].user.slice(0, 20) + "...";
+
+    // Styling
+    chatPreview.style.backgroundColor = "#e5e7eb";
+    chatPreview.style.borderRadius = "1rem";
+    chatPreview.style.padding = "0.5rem";
+    chatPreview.style.margin = "0.3rem";
+    chatPreview.style.cursor = "pointer";
+
+    // Store session index
+    chatPreview.dataset.index = allSessions.length - 1;
+
+    // Open old chat on click
+    chatPreview.addEventListener("click", loadChat);
+
+    // Add to sidebar
+    // recentChats.appendChild(chatPreview);
+    recentChats.prepend(chatPreview);
   }
 
   // Reset current session
   currentSession = [];
 
-  // Clear chat UI
+  // Clear current chat UI
   chatBox.innerHTML = "";
 
-  // Hide chat
+  // Hide chat container
   chatBox.classList.replace("chatVisible", "chat");
 
   // Restore welcome screen
   main.prepend(upperDiv);
-  main.insertBefore(centerDiv, document.querySelector(".mainFooter"));
-}
 
+  main.insertBefore(centerDiv, document.querySelector(".mainFooter"));
+  loadedOldChat = false;
+}
 // function getResponse(reply) {
 //   resp.innerText = "";
 //   let response = document.createElement("p");
 //   response.innerText = reply;
 //   chatBox.appendChild(response);
 // }
+
+function loadChat(event) {
+  // get clicked chat index
+  let sessionIndex = event.target.dataset.index;
+
+  // get selected session
+  let selectedSession = allSessions[sessionIndex];
+
+  // clear current UI
+  chatBox.innerHTML = "";
+
+  // remove welcome screen
+  upperDiv.remove();
+  centerDiv.remove();
+
+  // show chat container
+  chatBox.classList.replace("chat", "chatVisible");
+
+  // rebuild messages
+  for (let message of selectedSession) {
+    // user bubble
+    let userBubble = document.createElement("p");
+    userBubble.classList.add("userMsg");
+    userBubble.innerText = message.user;
+
+    // bot bubble
+    let botBubble = document.createElement("p");
+    botBubble.classList.add("botMsg");
+    botBubble.innerHTML = marked.parse(message.bot);
+
+    // append both
+    chatBox.appendChild(userBubble);
+    chatBox.appendChild(botBubble);
+  }
+
+  // scroll bottom
+  chatBox.scrollTop = chatBox.scrollHeight;
+
+  // make this active session
+  currentSession = [...selectedSession];
+  loadedOldChat = true;
+}
