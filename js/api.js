@@ -3,7 +3,7 @@ async function getGeminiResponse(prompt) {
     let resp = await axios.post("/api/chat", {
       prompt: prompt,
     });
-
+    console.log(resp.data);
     return resp.data.candidates[0].content.parts[0].text;
   } catch (error) {
     console.log(error);
